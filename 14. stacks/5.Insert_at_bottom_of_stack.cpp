@@ -4,7 +4,7 @@ using namespace std;
 
 /** Challenge: insert at stack bottom */
 
-void insertAtBottom(std::stack<int>& s, int data)
+void insertAtBottom(stack<int>& s, int data)
 {
     // Base case: stack is empty
     if (s.empty())

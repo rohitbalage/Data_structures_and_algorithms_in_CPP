@@ -1,41 +1,34 @@
-#include <vector>
-#include <cmath>
-#include <algorithm>
+#include <iostream>
 
+// We use the standard namespace for clean input/output code
 using namespace std;
-
 
 class Solution {
   public:
-    vector<int> quadraticRoots(int a, int b, int c) {
-        vector<int> final_result;
-
-        // 1. Calculate discriminant using 64-bit precision to prevent integer overflow
-        long long discriminant = (long long)b * b - 4 * a * c;
-
-        // 2. If roots are imaginary, return {-1}
-        if (discriminant < 0) {
-            final_result.push_back(-1);
-            return final_result;
+    int gcd(int a, int b) {
+        // While the second number is not zero
+        while (b != 0) {
+            int remainder = a % b;
+            a = b;          // Update a to be the smaller number
+            b = remainder;  // Update b to be the remainder
         }
-
-        // 3. Compute precise roots using double precision
-        double root1 = (-b + sqrt(discriminant)) / (2.0 * a);
-        double root2 = (-b - sqrt(discriminant)) / (2.0 * a);
-
-        // 4. Apply mathematical floor to round down toward negative infinity
-        int x = floor(root1);
-        int y = floor(root2);
-
-        // 5. Place roots in decreasing order (largest value first)
-        if (x >= y) {
-            final_result.push_back(x);
-            final_result.push_back(y);
-        } else {
-            final_result.push_back(y);
-            final_result.push_back(x);
-        }
-
-        return final_result;
+        return a; // When b becomes 0, a is the GCD
     }
 };
+
+int main() {
+    // 1. Create an object of the Solution class
+    Solution solver;
+    
+    // 2. Define the input variables
+    int num1 = 20;
+    int num2 = 28;
+    
+    // 3. Call the gcd function using our object
+    int result = solver.gcd(num1, num2);
+    
+    // 4. Print the final answer to the terminal
+    cout << "The GCD of " << num1 << " and " << num2 << " is: " << result << endl;
+    
+    return 0;
+}

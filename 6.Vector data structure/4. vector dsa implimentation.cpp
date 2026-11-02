@@ -16,7 +16,7 @@ public:
         arr = new int[ms];
     }
 
-    void push_back(int d)
+    void push_back(const int d)
     {
         // two cases:
 
@@ -49,32 +49,40 @@ public:
     }
 
     bool isEmpty()
-    {
+    const {
         return cs == 0;
     }
 
     int front()
-    {
+    const {
         return arr[0];
     }
 
     int back()
-    {
+     const{
         return arr[cs - 1];
     }
 
-    int at(int i)
-    {
+    int at (int i)
+    const{
         return arr[i];
     }
-    int size()
+    int size const()
     {
         return cs;
     }
     int capacity()
-    {
+   const {
         return ms;
     }
+
+    // whenever this operator is called on the object of your class, and this operator contains parameter i, you will return array[i]
+
+    int operator[](const int i)
+   const {
+        return arr[i];
+    }
+
     // methods
 
     // Operation: push_back : add element to last of positon & if the vector is full it going to double it
@@ -94,7 +102,28 @@ int main()
     v.push_back(3);
     v.push_back(4);
     v.push_back(5);
-    cout << v.size() << endl;
-    cout << v.capacity();
+
+    cout << v.front() << endl;
+    cout << v.back() << endl;
+
+    cout << v.at(2) << endl;
+
+    cout << v.size() << endl; // 5
+    cout << v.capacity();     // 8
+
+    // print all elements of the vector
+
+    for (int i = 0; i < v.size(); i++)
+    {
+        cout << v.at(i) << "," << endl;
+    }
+
+    // OR 
+
+    for (int i = 0; i < v.size(); i++)
+    {
+        cout << v[i] << "," << endl;
+    }
+
     return 0;
 }

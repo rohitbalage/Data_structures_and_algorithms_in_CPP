@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include "vector.h"
 using namespace std;
@@ -6,7 +7,7 @@ using namespace std;
 
 int main()
 {
-    Vector<int> v(5);  // defined which type of data we are going to store in vector class
+    Vector<int> v(1);  // defined which type of data we are going to store in vector class
 
 /*
 
@@ -36,7 +37,7 @@ for(int i=0; i< vc.size(); i++)
     cout << v.at(2) << endl;
 
     cout << v.size() << endl; // 5
-    cout << v.capacity();     // 8
+    cout << v.capacity() << endl;     // 8
 
     // print all elements of the vector
 

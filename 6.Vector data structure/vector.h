@@ -1,3 +1,4 @@
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -10,16 +11,21 @@ template <typename T> // tells this class all data will be type T;
 class Vector
 {
     // data members
-    int *arr;
+    T *arr;
     int cs; // current size
     int ms; // max size
 
 public:
-    vector(int max_size = 1)
+    Vector(int max_size = 1)
     {
         cs = 0;
         ms = max_size;
         arr = new T[ms];
+    }
+
+    ~Vector()
+    {
+        delete[] arr;
     }
 
     void push_back(const T d)
@@ -27,65 +33,88 @@ public:
         // two cases:
 
         // vector is full
-        if (cs = ms)
+        if (cs == ms)
         {
             // create a new array and delete the old one, double the capacity
             T *oldArr = arr;
             ms = 2 * ms;
             arr = new T[ms];
+
             // copy the elements
             for (int i = 0; i < cs; i++)
             {
-                arr[i] == oldArr[i];
+                arr[i] = oldArr[i];
             }
+
             //  delete old array
 
             delete[] oldArr;
         }
+
         arr[cs] = d;
         cs++;
     }
 
     void pop_back()
     {
-        if (cs >= 0)
+        if (cs > 0)
         {
             cs--;
         }
     }
 
-    bool isEmpty()
-    const {
+    bool isEmpty() const
+    {
         return cs == 0;
     }
 
-    T front()
-    const {
+    T front() const
+    {
+        if (cs == 0)
+        {
+            cout << "Vector is empty" << endl;
+            return T();
+        }
+
         return arr[0];
     }
 
-    T back()
-     const{
+    T back() const
+    {
+        if (cs == 0)
+        {
+            cout << "Vector is empty" << endl;
+            return T();
+        }
+
         return arr[cs - 1];
     }
 
-    T at (int i)
-    const{
+    T at(int i) const
+    {
+        if (i < 0 || i >= cs)
+        {
+            cout << "Invalid index" << endl;
+            return T();
+        }
+
         return arr[i];
     }
-    int size const()
+
+    int size() const
     {
         return cs;
     }
-    int capacity()
-   const {
+
+    int capacity() const
+    {
         return ms;
     }
 
     // whenever this operator is called on the object of your class, and this operator contains parameter i, you will return array[i]
 
-    T operator[](const int i)
-   const {
+    T operator[](const int i) const
+    {
         return arr[i];
     }
 

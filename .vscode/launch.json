@@ -1,24 +1,41 @@
 {
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "C/C++ Runner: Debug Session",
-      "type": "cppdbg",
-      "request": "launch",
-      "args": [],
-      "stopAtEntry": false,
-      "externalConsole": true,
-      "cwd": ".",
-      "program": "build/Debug/outDebug",
-      "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "setupCommands": [
+    "version": "0.2.0",
+    "configurations": [
         {
-          "description": "Enable pretty-printing for gdb",
-          "text": "-enable-pretty-printing",
-          "ignoreFailures": true
+            "name": "Debug C/C++",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "c:\\Users\\r.balage\\Desktop\\Data_structures_and_algorithms_in_CPP\\12.Object oriented programming\\6.copy_assignment_operator_debug.exe",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "c:\\Users\\r.balage\\Desktop\\Data_structures_and_algorithms_in_CPP\\12.Object oriented programming",
+            "environment": [
+                {
+                    "name": "PATH",
+                    "value": "${env:PATH};C:/ProgramData/mingw64/mingw64/bin;C:/mingw64/bin;C:/msys64/mingw64/bin"
+                },
+                {
+                    "name": "MINGW_HOME",
+                    "value": "C:/ProgramData/mingw64/mingw64"
+                }
+            ],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "miDebuggerPath": "gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                },
+                {
+                    "description": "Set Disassembly Flavor to Intel",
+                    "text": "-gdb-set disassembly-flavor intel",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "",
+            "internalConsoleOptions": "openOnSessionStart"
         }
-      ]
-    }
-  ]
+    ]
 }

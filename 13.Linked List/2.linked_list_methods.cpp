@@ -13,6 +13,10 @@ int main()
     l.push_back(4);
     l.insert(2,2);
     l.insert(10,0);
+    l.pop_front();
+    
+    l.pop_back();
+    l.remove(1);
 
     Node *head = l.begin();
 

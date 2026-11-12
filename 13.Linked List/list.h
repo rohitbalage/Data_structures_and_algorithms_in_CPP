@@ -116,17 +116,6 @@ public:
 	}
 
 
-	// destructor
-	~LinkedList()
-	{
-		if(head!=NULL)
-		{
-			delete head;
-			head =NULL;
-		}
-
-	}
-
 
 	void pop_front(){
 		Node * temp = head;
@@ -139,14 +128,59 @@ public:
 	// pop_back
 	// remove (pos) 
 
-	void pop_back(){
+	// --- Pop Back ---
+    void pop_back(){
+        if(head == NULL) return; // Empty list
 
+        // If there is only one node in the list
+        if(head == tail){
+            delete head;
+            head = tail = NULL;
+            return;
+        }
 
-	}
+        // Traverse to find the second last node
+        Node *temp = head;
+        while(temp->next != tail){
+            temp = temp->next;
+        }
 
-	void remove(int pos){
+        // Delete the tail and update pointers
+        delete tail;
+        tail = temp;
+        tail->next = NULL;
+    }
 
-	}
+    // --- Remove at Position ---
+    void remove(int pos){
+        if(head == NULL) return;
+
+        // If removing the first element, use pop_front
+        if(pos == 0){
+            pop_front();
+            return;
+        }
+
+        // Traverse to the node just before the one we want to delete
+        Node *prev = head;
+        for(int jump = 1; jump <= pos - 1; jump++){
+            if(prev == NULL || prev->next == NULL) return; // Position out of bounds
+            prev = prev->next;
+        }
+
+        Node *toDelete = prev->next;
+        if(toDelete == NULL) return; // Position out of bounds
+
+        prev->next = toDelete->next;
+
+        // If we are removing the tail node, update the tail pointer
+        if(toDelete == tail){
+            tail = prev;
+        }
+
+        toDelete->next = NULL; // Prevent recursive destructor cascade
+        delete toDelete;
+    }
 
 	~List(){
 		if(head!=NULL){
@@ -154,6 +188,7 @@ public:
 			head = NULL;
 		}
 	}
+
 };
 
 

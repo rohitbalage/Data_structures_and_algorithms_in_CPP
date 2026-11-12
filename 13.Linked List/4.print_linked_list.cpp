@@ -21,6 +21,10 @@ int main()
         cout << head->getData() << "->";
         head = head->next;
     }
+    
+ cout << "\nIterative Search: " << l.search(10) << endl;
+
+cout << "\nRecursive Search: " << l.recursiveSearch(10) << endl; 
 
     return 0;
 }

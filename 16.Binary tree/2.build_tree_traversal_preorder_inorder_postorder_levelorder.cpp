@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue> 
 
 using namespace std;
 
@@ -81,6 +82,52 @@ void printpostOrder(Node *root)
     cout << root->data << " ";
 }
 
+
+/*Level Order traversal
+
+1
+2 3
+4 5 6
+7
+*/
+
+void printlevelOrder(Node *root)
+{
+    queue<Node*> q; // Fixed: node* -> Node*
+    q.push(root);
+    q.push(NULL); 
+
+    while(!q.empty())
+    {
+        Node* temp = q.front(); // Fixed: node* -> Node*
+        if(temp == NULL)
+        {
+            cout << endl;
+            q.pop();
+
+            // insert a new NULL for the next level
+            if(!q.empty())
+            {
+                q.push(NULL);
+            }
+        }
+        else
+        {
+            q.pop();
+            cout << temp->data << " ";
+            if(temp->left)
+            {
+                q.push(temp->left);
+            }
+            if(temp->right)
+            {
+                q.push(temp->right);
+            }
+        }
+    }
+}
+
+
 int main()
 {
     cout << "Enter tree values (-1 for a missing node):" << endl;
@@ -97,6 +144,10 @@ int main()
 
     cout << "Postorder: ";
     printpostOrder(root);
+    cout << endl;
+
+    cout << "levelorder: \n";
+    printlevelOrder(root);
     cout << endl;
 
     return 0;

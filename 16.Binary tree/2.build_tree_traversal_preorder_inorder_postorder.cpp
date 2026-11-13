@@ -2,11 +2,13 @@
 
 using namespace std;
 
-// Input: 1 2 4 -1 5 7 -1 -1 -1 3 -1 6 -1 -1 -1
+// Input: 1 2 4 -1 -1 5 7 -1 -1 -1 3 -1 6 -1 -1
 
-//Preorder: 1 2 4 5 7 3 6 
+// Preorder: 1 2 4 5 7 3 6 
 
 // Inorder: 4,2,7,5,1,3,6
+
+// Postorder: 4,7,5,2,6,3,1
 
 class Node
 {
@@ -56,15 +58,27 @@ void printPreorder(Node *root)
     printPreorder(root->right);
 }
 
-
+// Inorder traversal
 void printInorder(Node *root)
 {
-    if(root==NULL){
+    if(root == NULL){
         return;
     }
     printInorder(root->left);
-    cout<<root->data<<" ";
+    cout << root->data << " ";
     printInorder(root->right);
+}
+
+// postorder traversal
+void printpostOrder(Node *root)
+{
+    if(root == NULL){
+        return;
+    }
+
+    printpostOrder(root->left);
+    printpostOrder(root->right);
+    cout << root->data << " ";
 }
 
 int main()
@@ -77,10 +91,13 @@ int main()
     printPreorder(root);
     cout << endl;
 
-
-     cout << "Inorder: ";
+    cout << "Inorder: ";
     printInorder(root);
-    cout<<endl;
+    cout << endl;
+
+    cout << "Postorder: ";
+    printpostOrder(root);
+    cout << endl;
 
     return 0;
 }

@@ -118,6 +118,19 @@ void printpostOrder(Node *root)
 }
 
 
+// helper function: Height of the tree
+int height(Node *root)
+{
+if(root ==NULL)
+{
+    return 0;
+}
+int h1 = height(root->left);
+int h2 = height(root->right);
+return 1+ max(h1,h2);
+}
+
+
 /*Level Order traversal
 
 1
@@ -185,10 +198,17 @@ int main()
     cout << endl;
 
     
+    int treeHeight = height(root);
+    cout << "Height of the tree: " << treeHeight << endl;
+    cout << endl;
+
+    
     root = levelOrderBuild();
     cout << "levelorder build: \n";
     printlevelOrder(root);
     cout << endl;
+
+
 
     return 0;
 }

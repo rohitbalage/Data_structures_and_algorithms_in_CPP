@@ -47,6 +47,41 @@ Node *buildTree()
     return n;
 }
 
+Node *levelOrderBuild()
+{
+    int d;
+    cin >> d;
+
+    if (d == -1)
+    {
+        return NULL;
+    }
+
+    Node *root = new Node(d);
+    queue<Node*> q;
+    q.push(root);
+
+    while(!q.empty())
+    {
+        Node* current = q.front();
+        q.pop();
+
+        int c1, c2;
+        cin >> c1 >> c2;
+        if(c1 != -1)
+        {
+            current->left = new Node(c1);
+            q.push(current->left);
+        }
+        if(c2 != -1)
+        {
+            current->right = new Node(c2);
+            q.push(current->right);
+        }
+    }
+    return root;
+}
+
 void printPreorder(Node *root)
 {
     if (root == NULL)
@@ -93,13 +128,13 @@ void printpostOrder(Node *root)
 
 void printlevelOrder(Node *root)
 {
-    queue<Node*> q; // Fixed: node* -> Node*
+    queue<Node*> q;
     q.push(root);
     q.push(NULL); 
 
     while(!q.empty())
     {
-        Node* temp = q.front(); // Fixed: node* -> Node*
+        Node* temp = q.front();
         if(temp == NULL)
         {
             cout << endl;
@@ -127,7 +162,6 @@ void printlevelOrder(Node *root)
     }
 }
 
-
 int main()
 {
     cout << "Enter tree values (-1 for a missing node):" << endl;
@@ -147,6 +181,12 @@ int main()
     cout << endl;
 
     cout << "levelorder: \n";
+    printlevelOrder(root);
+    cout << endl;
+
+    
+    root = levelOrderBuild();
+    cout << "levelorder build: \n";
     printlevelOrder(root);
     cout << endl;
 
